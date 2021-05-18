@@ -1,0 +1,22 @@
+{
+  "name": "cattle-monitor",
+  "description": "Simple app to manage cattle",
+  "version": "0.1.0",
+  "author": "Thiago Trannin",
+  "private": true,
+  "main": "src/main.js",
+  "build": {
+    "win": {
+      "artifactName": "Cattle Monitor.exe",
+      "target": "portable"
+    }
+  },
+  "scripts": {
+    "dev": "electron .",
+    "build": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^12.0.8",
+    "electron-builder": "^22.10.5"
+  }
+}
