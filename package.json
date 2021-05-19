@@ -1,8 +1,6 @@
 {
   "name": "cattle-monitor",
-  "description": "Simple app to manage cattle",
-  "version": "0.1.0",
-  "author": "Thiago Trannin",
+  "version": "0.2.0",
   "private": true,
   "main": "src/main.js",
   "build": {
@@ -12,7 +10,7 @@
     }
   },
   "scripts": {
-    "dev": "electron .",
+    "dev": "electron src/dev.js",
     "build": "electron-builder"
   },
   "devDependencies": {

@@ -1,4 +1,4 @@
-name: Build
+name: Build executable
 
 on:
   push:
@@ -10,7 +10,7 @@ jobs:
     name: Build Windows portable executable
     runs-on: windows-latest
     steps:
-      - name: Checkout the repository
+      - name: Checkout repository
         uses: actions/checkout@v2
       - name: Use Node.js
         uses: actions/setup-node@v2
@@ -18,7 +18,7 @@ jobs:
           node-version: 16
       - name: Download dependencies
         run: yarn install --frozen-lockfile
-      - name: Build the executable
+      - name: Build executable
         run: yarn build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
