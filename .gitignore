@@ -1,8 +1,8 @@
 /node_modules/
+/renderer/.next/
 
 /dist/
-
-/renderer/.next/
+/main/out/
 /renderer/out/
 
 /data.json

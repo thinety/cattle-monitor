@@ -1,12 +1,13 @@
-const fs = require('fs/promises');
-const path = require('path');
-const { app, ipcMain, protocol, BrowserWindow } = require('electron');
+import fs from 'fs/promises';
+import path from 'path';
+import { app, ipcMain, protocol, BrowserWindow } from 'electron';
 
 app.on('ready', () => {
-  const cattleDataFile = path.join(process.env.PORTABLE_EXECUTABLE_DIR, 'data.json');
+  const cattleDataFile = path.join(process.env.PORTABLE_EXECUTABLE_DIR!, 'data.json');
   ipcMain.handle('get-cattle-data', async (_event) => {
     const cattleDataBuffer = await fs.readFile(cattleDataFile);
-    const cattleData = JSON.parse(cattleDataBuffer);
+    const cattleDataString = cattleDataBuffer.toString();
+    const cattleData = JSON.parse(cattleDataString);
     return cattleData;
   });
   ipcMain.handle('set-cattle-data', async (_event, cattleData) => {
@@ -19,7 +20,7 @@ app.on('ready', () => {
     let filepath = requestUrl.pathname;
 
     if (filepath.substring(3).startsWith('/_next')) {
-      filepath = path.join(__dirname, '../renderer/out', filepath.substring(4));
+      filepath = path.join(__dirname, '../../renderer/out', filepath.substring(4));
     }
 
     callback(filepath);
@@ -35,5 +36,5 @@ app.on('ready', () => {
       preload: path.join(__dirname, 'preload.js'),
     },
   });
-  window.loadFile(path.join(__dirname, '../renderer/out/index.html'));
+  window.loadFile(path.join(__dirname, '../../renderer/out/index.html'));
 });

@@ -1,29 +1,30 @@
 {
   "name": "cattle-monitor",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "private": true,
   "scripts": {
     "renderer:dev": "next dev renderer",
+    "main:dev": "tsc -p main && electron main/out/dev.js",
     "renderer:build": "next build renderer && next export renderer",
-    "main:dev": "electron main/dev.js",
-    "main:build": "electron-builder"
+    "main:build": "tsc -p main && electron-builder"
   },
-  "main": "main/prod.js",
+  "main": "main/out/prod.js",
   "build": {
     "files": [
-      "main",
+      "main/out",
       "renderer/out"
     ],
     "win": {
-      "artifactName": "Cattle Monitor.exe",
+      "artifactName": "CattleMonitor.exe",
       "target": "portable"
     }
   },
   "devDependencies": {
+    "@types/node": "^15.3.0",
     "@types/react": "^17.0.6",
     "electron": "^12.0.8",
     "electron-builder": "^22.10.5",
-    "next": "^10.2.0",
+    "next": "^10.2.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "typescript": "^4.2.4"
