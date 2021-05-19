@@ -19,6 +19,6 @@ jobs:
       - name: Download dependencies
         run: yarn install --frozen-lockfile
       - name: Build executable
-        run: yarn build
+        run: yarn renderer:build && yarn main:build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
