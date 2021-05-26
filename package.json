@@ -1,18 +1,19 @@
 {
   "name": "cattle-monitor",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "private": true,
   "scripts": {
-    "renderer:dev": "next dev renderer",
-    "main:dev": "tsc -p main && electron main/out/dev.js",
-    "renderer:build": "next build renderer && next export renderer",
-    "main:build": "tsc -p main && electron-builder"
+    "dev:watch": "webpack --mode development --watch",
+    "dev": "electron .",
+    "build": "webpack --mode production && electron-builder"
   },
-  "main": "main/out/prod.js",
+  "main": "out/main.js",
   "build": {
+    "directories": {
+      "output": "dist"
+    },
     "files": [
-      "main/out",
-      "renderer/out"
+      "out"
     ],
     "win": {
       "artifactName": "CattleMonitor.exe",
@@ -20,13 +21,30 @@
     }
   },
   "devDependencies": {
-    "@types/node": "^15.3.0",
-    "@types/react": "^17.0.6",
-    "electron": "^12.0.8",
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.2",
+    "@babel/preset-react": "^7.13.13",
+    "@babel/preset-typescript": "^7.13.0",
+    "@types/node": "^15.6.1",
+    "@types/react": "^17.0.8",
+    "@types/react-dom": "^17.0.5",
+    "babel-loader": "^8.2.2",
+    "copy-webpack-plugin": "^9.0.0",
+    "css-loader": "^5.2.6",
+    "css-minimizer-webpack-plugin": "^3.0.0",
+    "electron": "^13.0.0",
     "electron-builder": "^22.10.5",
-    "next": "^10.2.1",
+    "electron-releases": "^3.690.0",
+    "html-minimizer-webpack-plugin": "^2.1.0",
+    "mini-css-extract-plugin": "^1.6.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "typescript": "^4.2.4"
+    "sass": "^1.34.0",
+    "sass-loader": "^11.1.1",
+    "semver": "^7.3.5",
+    "terser-webpack-plugin": "^5.1.2",
+    "typescript": "^4.2.4",
+    "webpack": "^5.37.1",
+    "webpack-cli": "^4.7.0"
   }
 }

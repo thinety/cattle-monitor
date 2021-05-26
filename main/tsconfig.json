@@ -1,23 +1,22 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "lib": ["dom", "esnext"],
+    "lib": [
+      "esnext"
+    ],
     "allowJs": false,
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
     "esModuleInterop": true,
-    "module": "commonjs",
+    "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "outDir": "./out"
+    "isolatedModules": true,
   },
-  "files": [
-    "src/dev.ts",
-    "src/preload.ts",
-    "src/prod.ts"
+  "include": [
+    "src/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": []
 }

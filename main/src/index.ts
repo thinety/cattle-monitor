@@ -2,8 +2,13 @@ import fs from 'fs/promises';
 import path from 'path';
 import { app, ipcMain, BrowserWindow } from 'electron';
 
+
+const cattleDataFile =
+  process.env.NODE_ENV === 'production'
+    ? path.join(process.env.PORTABLE_EXECUTABLE_DIR!, 'data.json')
+    : path.join(__dirname, 'data.json');
+
 app.on('ready', () => {
-  const cattleDataFile = path.join(__dirname, '../../data.json');
   ipcMain.handle('get-cattle-data', async (_event) => {
     const cattleDataBuffer = await fs.readFile(cattleDataFile);
     const cattleDataString = cattleDataBuffer.toString();
@@ -25,5 +30,5 @@ app.on('ready', () => {
       preload: path.join(__dirname, 'preload.js'),
     },
   });
-  window.loadURL('http://localhost:3000');
+  window.loadFile(path.join(__dirname, 'index.html'));
 });
