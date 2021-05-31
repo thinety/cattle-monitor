@@ -47,7 +47,9 @@ module.exports = [
                     node: currentNode,
                   },
                 }],
-                "@babel/preset-typescript",
+                ["@babel/preset-typescript", {
+                  onlyRemoveTypeImports: true,
+                }],
               ],
             },
           },
@@ -80,7 +82,9 @@ module.exports = [
                     chrome: currentChrome,
                   },
                 }],
-                "@babel/preset-typescript",
+                ["@babel/preset-typescript", {
+                  onlyRemoveTypeImports: true,
+                }],
               ],
             },
           },
@@ -116,7 +120,9 @@ module.exports = [
                 ["@babel/preset-react", {
                   runtime: 'automatic',
                 }],
-                "@babel/preset-typescript",
+                ["@babel/preset-typescript", {
+                  onlyRemoveTypeImports: true,
+                }],
               ],
             },
           },

@@ -1,6 +1,6 @@
-import fs from 'fs/promises';
-import path from 'path';
-import { app, ipcMain, BrowserWindow } from 'electron';
+import * as fs from 'fs/promises';
+import * as path from 'path';
+import { ipcMain, app, BrowserWindow } from 'electron';
 
 
 const cattleDataFile =
@@ -8,18 +8,19 @@ const cattleDataFile =
     ? path.join(process.env.PORTABLE_EXECUTABLE_DIR!, 'data.json')
     : path.join(__dirname, 'data.json');
 
-app.on('ready', () => {
-  ipcMain.handle('get-cattle-data', async (_event) => {
-    const cattleDataBuffer = await fs.readFile(cattleDataFile);
-    const cattleDataString = cattleDataBuffer.toString();
-    const cattleData = JSON.parse(cattleDataString);
-    return cattleData;
-  });
-  ipcMain.handle('set-cattle-data', async (_event, cattleData) => {
-    const cattleDataString = JSON.stringify(cattleData);
-    await fs.writeFile(cattleDataFile, cattleDataString);
-  });
+ipcMain.handle('get-cattle-data', async (_event) => {
+  const cattleDataBuffer = await fs.readFile(cattleDataFile);
+  const cattleDataString = cattleDataBuffer.toString();
+  const cattleData = JSON.parse(cattleDataString);
+  return cattleData;
+});
 
+ipcMain.handle('set-cattle-data', async (_event, data) => {
+  const cattleDataString = JSON.stringify(data);
+  await fs.writeFile(cattleDataFile, cattleDataString);
+});
+
+app.on('ready', () => {
   const window = new BrowserWindow({
     width: 800,
     height: 600,
@@ -30,5 +31,6 @@ app.on('ready', () => {
       preload: path.join(__dirname, 'preload.js'),
     },
   });
+
   window.loadFile(path.join(__dirname, 'index.html'));
 });
