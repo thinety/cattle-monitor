@@ -1,0 +1,6 @@
+{
+  "name": "@cattle-monitor/main",
+  "dependencies": {
+    "@types/node": "^15.12.1"
+  }
+}
