@@ -36,7 +36,7 @@
     "css-minimizer-webpack-plugin": "^3.0.2",
     "electron": "^13.2.3",
     "electron-builder": "^22.11.7",
-    "electron-releases": "^3.775.0",
+    "electron-releases": "^3.915.0",
     "html-minimizer-webpack-plugin": "^3.1.1",
     "mini-css-extract-plugin": "^2.2.0",
     "sass": "^1.38.2",
